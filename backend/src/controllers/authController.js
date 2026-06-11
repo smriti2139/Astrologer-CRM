@@ -39,29 +39,40 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({
-      email,
-    });
+    console.log("EMAIL:", email);
 
-    if (
-      user &&
-      (await bcrypt.compare(
-        password,
-        user.password
-      ))
-    ) {
-      return res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: generateToken(user._id),
+    const user = await User.findOne({ email });
+
+    console.log("USER FOUND:", !!user);
+
+    if (!user) {
+      return res.status(401).json({
+        message: "User not found",
       });
     }
 
-    res.status(401).json({
-      message: "Invalid credentials",
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    console.log("PASSWORD MATCH:", isMatch);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        message: "Password incorrect",
+      });
+    }
+
+    return res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
     });
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       message: error.message,
     });
