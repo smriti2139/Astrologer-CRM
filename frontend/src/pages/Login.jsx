@@ -29,8 +29,7 @@ function Login() {
       console.log(error.response?.data);
 
       alert(
-        error.response?.data?.message ||
-        "Login Failed"
+        JSON.stringify(error.response?.data)
       );
     }
   };
