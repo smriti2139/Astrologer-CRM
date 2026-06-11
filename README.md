@@ -53,9 +53,9 @@ npm run dev
 
 Create a .env file inside backend:
 
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=mongodb://astrologerAdmin:astrologer123@ac-i9nbjj0-shard-00-00.zcn5tbe.mongodb.net:27017,ac-i9nbjj0-shard-00-01.zcn5tbe.mongodb.net:27017,ac-i9nbjj0-shard-00-02.zcn5tbe.mongodb.net:27017/?ssl=true&replicaSet=atlas-mqyy5l-shard-0&authSource=admin&appName=Cluster0
 
-JWT_SECRET=your_secret_key
+JWT_SECRET=somerandomverylongsecret
 
 PORT=5000
 
