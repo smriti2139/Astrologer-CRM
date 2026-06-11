@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -12,10 +12,13 @@ function Login() {
     e.preventDefault();
 
     try {
-      const { data } = await api.post("/auth/login", {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        "https://astrologer-crm-backend.onrender.com/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       localStorage.setItem("token", data.token);
 
@@ -23,7 +26,12 @@ function Login() {
 
       navigate("/dashboard");
     } catch (error) {
-      alert("Invalid Credentials");
+      console.log(error.response?.data);
+
+      alert(
+        error.response?.data?.message ||
+        "Login Failed"
+      );
     }
   };
 
