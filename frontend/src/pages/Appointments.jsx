@@ -20,7 +20,7 @@ function Appointments() {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.get(
-        "http://localhost:5000/api/clients",
+         "https://astrologer-crm-backend.onrender.com/api/clients",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ function Appointments() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/appointments",
+        "https://astrologer-crm-backend.onrender.com/api/appointments",
         formData,
         {
           headers: {

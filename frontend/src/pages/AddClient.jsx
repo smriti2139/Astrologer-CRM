@@ -26,7 +26,7 @@ function AddClient() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/clients",
+        "https://astrologer-crm-backend.onrender.com/api/clients",
         formData,
         {
           headers: {
